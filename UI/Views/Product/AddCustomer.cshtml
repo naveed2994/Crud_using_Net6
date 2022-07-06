@@ -1,0 +1,37 @@
+﻿@using Application.Customers.ReadModels;
+@model CustomersModel;
+@{
+    var id = 0;
+    if (Model.Name != null)
+    {
+        id = 1;
+    }
+}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+                Edit Customer
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="addform">
+                <input type="hidden" id="cus_id" name="id" value="@Model.Id"  />
+                <label>Name</label>
+                <input type="text" id="name" class="form-control" value="@Model.Name" />
+                <br />
+                <label>FName</label>
+                <input type="text" id="fname" class="form-control" value="@Model.Fname" />
+                <br />
+                <label>Phone</label>
+                <input type="text" id="phone" class="form-control" value="@Model.Phone" />
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary" onclick="submitForm(@id)">Save</button>
+        </div>
+    </div>
+</div>
+@*</div>*@

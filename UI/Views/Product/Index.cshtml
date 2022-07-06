@@ -1,0 +1,45 @@
+﻿@using Application.Customers.ReadModels
+@model IEnumerable<CustomersModel>;
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="contianer">
+    <div>
+
+        <h1>List of Product</h1>
+        <div class="w-100">
+            <a href="#" class="btn" onClick="edit();">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add Customer
+            </a>
+        </div>
+        <table class="table table-default table-striped table-hover w-100" id="table">
+            <thead>
+                <tr>
+                    @*<th>Id</th>*@
+                    <th>Name</th>
+                    <th>Fname</th>
+                    <th>Phone</th>
+                    <th>CreatedOn</th>
+                    <th class="">Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th >Name</th>
+                    <th>FName</th>
+                    <th>Phone</th>
+                    <th>CreatedOn</th>
+                    @*<th>Action</th>*@
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    </div>
+</div>
+@section Scripts{
+    <script src="~/views/product/Index.js">
+    </script>
+}
