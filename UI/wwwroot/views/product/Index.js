@@ -57,10 +57,10 @@ function get() {
         "sAjaxSource": '/GetAllCustomers',
         "bProcessing": true,
         "aoColumns": [
-            { "mData": "Name", "searchable": true },
-            { "mData": "Fname", "searchable": true },
-            { "mData": "Phone" },
-            { "mData": "CreatedOn" },
+            { "mData": "Name", "searchable": true ,"bSortable": true},
+            { "mData": "Fname", "searchable": true ,"bSortable": true},
+            { "mData": "Phone" ,"bSortable": true},
+            { "mData": "CreatedOn","bSortable": true },
             {
                 'mData': function (data) {
                     return `<a href="#" class="btn btn-danger delete_btn" onclick="deleteFunc(\`` + '' + data.Id + `\`);" >
