@@ -30,10 +30,10 @@ namespace UI.Controllers
         [HttpGet]
         [Route("[action]")]
         public async Task<string> GetAllCustomers(string sEcho, int iDisplayStart, int iDisplayLength, string? nameSearch, string? fnameSearch, string? phone, DateTime? createdOn, SearchModel search, string[] aoColumns, string sSearch)
-      {
-                //var searchValue = Request.Form.TryGetValue("search[value]",)[0];
-                var response = await _mediator.Send(new CustomerList(iDisplayStart, iDisplayLength, sSearch, nameSearch, fnameSearch, phone, createdOn));
-            
+        {
+            //var searchValue = Request.Form.TryGetValue("search[value]",)[0];
+            var response = await _mediator.Send(new CustomerList(iDisplayStart, iDisplayLength, sSearch, nameSearch, fnameSearch, phone, createdOn));
+
             StringBuilder sb = new StringBuilder();
             sb.Clear();
             sb.Append("{");

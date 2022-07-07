@@ -24,6 +24,31 @@ $(document).ready(function () {
         var data = $("#Phone").val();
         $('#table').DataTable().ajax.url(`/getAllCustomers?createdOn=` + data).load();
     });
+    $('#0').on('change', function () {
+        let value = $(this).is(":checked");
+        $('#table').DataTable().column(0).visible(value);
+    });
+    $('#1').on('change', function () {
+        let value = $(this).is(":checked");
+        $('#table').DataTable().column(1).visible(value);
+    });
+    $('#2').on('change', function () {
+        let value = $(this).is(":checked");
+        $('#table').DataTable().column(2).visible(value);
+    });
+    $('#3').on('change', function () {
+        let value = $(this).is(":checked")
+            ;//.prop().isChecked;
+        $('#table').DataTable().column(3).visible(value);
+    });
+    $('#4').on('change', function () {
+        let value = $(this).is(":checked");
+        $('#table').DataTable().column(4).visible();
+    });
+    //$('#5').on('change', function () {
+    //    let value = $(this).is(':checked');
+    //    $('#table').DataTable().column(5).visible(value);
+    //});
 });
 
 function get() {
@@ -194,6 +219,12 @@ function submitForm(isEdit) {
         });
     }
 }
+
+//function showHide(e, id) {
+
+//$('#table').DataTable().column(id).visible($('' + id + '').val());
+//}
+//}
 
 function deleteFunc(id) {
     let is = confirm("are you sure?");
