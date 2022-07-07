@@ -55,12 +55,13 @@ function get() {
     var table = $('#table').dataTable({
         "bServerSide": true,
         "sAjaxSource": '/GetAllCustomers',
+        "bSortable_1": true,
         "bProcessing": true,
         "aoColumns": [
-            { "mData": "Name", "searchable": true ,"bSortable": true},
-            { "mData": "Fname", "searchable": true ,"bSortable": true},
-            { "mData": "Phone" ,"bSortable": true},
-            { "mData": "CreatedOn","bSortable": true },
+            { "mData": "Name", "searchable": true, "bSortable": true },
+            { "mData": "Fname", "searchable": true, "bSortable": true },
+            { "mData": "Phone", "bSortable": true },
+            { "mData": "CreatedOn", "bSortable": true },
             {
                 'mData': function (data) {
                     return `<a href="#" class="btn btn-danger delete_btn" onclick="deleteFunc(\`` + '' + data.Id + `\`);" >

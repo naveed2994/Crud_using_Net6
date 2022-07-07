@@ -29,11 +29,11 @@ namespace UI.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<string> GetAllCustomers(string sEcho, int iDisplayStart, int iDisplayLength, string? nameSearch, string? fnameSearch, string? phone, DateTime? createdOn, SearchModel search, string[] aoColumns, string sSearch)
+        public async Task<string> GetAllCustomers(string sEcho, int iDisplayStart, int iDisplayLength, string? nameSearch, string? fnameSearch, string? phone, DateTime? createdOn, SearchModel search, string[] aoColumns, string sSearch, int iSortCol_0, string sSortDir_0)
         {
             //var searchValue = Request.Form.TryGetValue("search[value]",)[0];
             var response = await _mediator.Send(new CustomerList(iDisplayStart, iDisplayLength, sSearch, nameSearch, fnameSearch, phone, createdOn));
-
+            var res = await SortedList(response, sSortDir_0.ToLower(), iSortCol_0);
             StringBuilder sb = new StringBuilder();
             sb.Clear();
             sb.Append("{");
@@ -47,7 +47,7 @@ namespace UI.Controllers
             sb.Append(10);
             sb.Append(",");
             sb.Append("\"aaData\": ");
-            sb.Append(JsonConvert.SerializeObject(response));
+            sb.Append(JsonConvert.SerializeObject(res));
             sb.Append("}");
             return sb.ToString();
 
@@ -89,6 +89,75 @@ namespace UI.Controllers
             return PartialView("AddCustomer", new CustomersModel());
         }
 
+        public async Task<IEnumerable<CustomersModel>> SortedList(IEnumerable<CustomersModel> models, string dir, int col)
+        {
+            if (col == 0)
+            {
+                if (dir == "desc")
+                {
+                    var result = models.OrderByDescending(x => x.Name);
+                    return result;
+                }
+                else
+                {
+                    var result = models.OrderBy(x => x.Name);
+                    return result;
+                }
+            }
+            else if (col == 1)
+            {
+
+                if (dir == "desc")
+                {
+                    var result = models.OrderByDescending(x => x.Fname);
+                    return result;
+
+                }
+                else
+                {
+                    var result = models.OrderBy(x => x.Fname);
+                    return result;
+
+                }
+            }
+            else if (col == 2)
+            {
+
+                if (dir == "desc")
+                {
+                    var result = models.OrderByDescending(x => x.Phone);
+
+                    return result;
+                }
+                else
+                {
+                    var result = models.OrderBy(x => x.Phone);
+
+                    return result;
+                }
+            }
+            else if (col == 3)
+            {
+
+                if (dir == "desc")
+                {
+                    var result = models.OrderByDescending(x => x.CreatedOn);
+
+                    return result;
+                }
+                else
+                {
+                    var result = models.OrderBy(x => x.CreatedOn);
+
+                    return result;
+                }
+            }
+
+            else
+            {
+                return models;
+            }
+        }
         [HttpPost]
         [Route("[action]")]
         public async Task<bool> Delete([FromBody] Guid id)
