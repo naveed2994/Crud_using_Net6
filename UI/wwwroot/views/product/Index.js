@@ -1,6 +1,4 @@
-﻿//import { ajax } from "jquery";
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     get();
     $('#table tfoot th').each(function () {
         var title = $(this).text();
@@ -45,6 +43,7 @@ $(document).ready(function () {
         let value = $(this).is(":checked");
         $('#table').DataTable().column(4).visible();
     });
+    $('#table').DataTable().rowReorder.enable();
     //$('#5').on('change', function () {
     //    let value = $(this).is(':checked');
     //    $('#table').DataTable().column(5).visible(value);
@@ -55,8 +54,15 @@ function get() {
     var table = $('#table').dataTable({
         "bServerSide": true,
         "sAjaxSource": '/GetAllCustomers',
+        "bJQueryUI": true,
+
         "bSortable_1": true,
         "bProcessing": true,
+        "bSort": true, "bJQueryUI": true,
+
+        "sDom": 'Rlfrtip',
+        "oColReorder": {
+        },
         "aoColumns": [
             { "mData": "Name", "searchable": true, "bSortable": true },
             { "mData": "Fname", "searchable": true, "bSortable": true },
@@ -72,6 +78,7 @@ function get() {
                 }
             }]
     });
+
     //var table = $("#table").dataTable({
     //    "processing": true,
     //    "serverSide": true,

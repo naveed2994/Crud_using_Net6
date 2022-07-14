@@ -46,6 +46,9 @@ namespace UI.Controllers
             sb.Append("\"iTotalDisplayRecords\": ");
             sb.Append(10);
             sb.Append(",");
+            sb.Append("\"sColumns\": ");
+            sb.Append("\"Name,Fname,Phone,CreatedOn,Action\"");
+            sb.Append(",");
             sb.Append("\"aaData\": ");
             sb.Append(JsonConvert.SerializeObject(res));
             sb.Append("}");
