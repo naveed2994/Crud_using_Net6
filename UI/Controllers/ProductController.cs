@@ -31,7 +31,15 @@ namespace UI.Controllers
         {
             return View();
         }
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IEnumerable<InvoiceModel>>
+            GetInvoiceLIst(int start, int Length)
+        {
 
+            var result = await _mediator.Send(new InvoiceList(start, Length, ""));
+            return result;
+        }
         public async Task<IEnumerable<ProductModel>> GetInvoiceDetails()
         {
             var res = await _mediator.Send(new ProductList());

@@ -53,7 +53,6 @@
         $('#table').DataTable().column(4).visible();
     });
 });
-
 function get() {
     var table = $('#table').dataTable({
         "bServerSide": true,
@@ -83,7 +82,6 @@ function get() {
     });
 
 }
-
 function edit(id) {
     var _url;
     id != null ? _url = "/addCustomer?id=" + id : _url = "/addCustomer";
@@ -154,8 +152,6 @@ function submitForm(isEdit) {
         });
     }
 }
-
-
 function deleteFunc(id) {
     let is = confirm("are you sure?");
     if (is) {

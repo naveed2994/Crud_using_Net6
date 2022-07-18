@@ -1,24 +1,24 @@
 ﻿@{
     Layout = "~/Pages/Shared/_layout.cshtml";
 }
+
 <div class="container">
-    <table class="table">
+    <table class="table table-striped table-hover" id="table">
         <thead>
             <tr>
                 <th>InoviceId</th>
                 <th>Items</th>
-                <th>Qty</th>
                 <th>SubTotal</th>
                 <th>Discount</th>
                 <th>Total</th>
                 <th>Action</th>
             </tr>
         </thead>
+        <tbody id="table">
+        </tbody>
     </table>
 </div>
 @section Scripts{
-
     <script src="~/views/product/InoviceList.js">
-
     </script>
 } 
