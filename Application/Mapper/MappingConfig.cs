@@ -14,6 +14,7 @@ namespace Application.Mapper
         public MappingConfig()
         {
             CreateMap<Customer, CustomersModel>();
+            CreateMap<Product, ProductModel>();
             //CreateMap<IEnumerable<Customer>, IEnumerable<CustomersModel>>();
             //CreateMap<IEnumerable<CustomersModel>, IEnumerable<Customer>>();
 

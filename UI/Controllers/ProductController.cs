@@ -27,6 +27,21 @@ namespace UI.Controllers
             return View();
         }
 
+        public IActionResult InvoiceList()
+        {
+            return View();
+        }
+
+        public async Task<IEnumerable<ProductModel>> GetInvoiceDetails()
+        {
+            var res = await _mediator.Send(new ProductList());
+            return res;
+        }
+
+        public IActionResult InvoicePage()
+        {
+            return View();
+        }
         [HttpGet]
         [Route("[action]")]
         public async Task<string> GetAllCustomers(string sEcho, int iDisplayStart, int iDisplayLength, string? nameSearch, string? fnameSearch, string? phone, DateTime? createdOn, SearchModel search, string[] aoColumns, string sSearch, int iSortCol_0, string sSortDir_0)
@@ -57,6 +72,17 @@ namespace UI.Controllers
             //return response;
         }
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<string> SaveInvoice(CreateInvoiceCommand cmd)
+        {
+            var res = await _mediator.Send(cmd);
+            if (res != Guid.Empty)
+            {
+                return "success";
+            }
+            return "error";
+        }
         [HttpPost]
         [Route("[action]")]
         public async Task<bool> CreateCustomer([FromBody] CreateCustomerCommand model)
@@ -92,6 +118,13 @@ namespace UI.Controllers
             return PartialView("AddCustomer", new CustomersModel());
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ProductModel> GetProdcut(Guid id)
+        {
+            var res = await _mediator.Send(new ProductDetail(id));
+            return res;
+        }
         public async Task<IEnumerable<CustomersModel>> SortedList(IEnumerable<CustomersModel> models, string dir, int col)
         {
             if (col == 0)
@@ -168,5 +201,7 @@ namespace UI.Controllers
             var response = await _mediator.Send(new DeleteCommand(id));
             return response;
         }
+
+
     }
 }

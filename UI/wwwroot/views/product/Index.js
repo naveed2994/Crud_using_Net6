@@ -7,20 +7,29 @@
     $('#CreatedOn').attr('type', "date");
     $('#Name').on('keyup', function (data) {
         var data = $('#Name').val();
-        $('#table').DataTable().ajax.url(`/getAllCustomers?nameSearch=` + data).load();
+        setTimeout(function () {
+
+            $('#table').DataTable().ajax.url(`/getAllCustomers?nameSearch=` + data).load();
+        }, 700);
     });
 
     $('#FName').on('keyup', function (data) {
         var data = $('#FName').val();
-        $('#table').DataTable().ajax.url(`/getAllCustomers?fnameSearch=` + data).load();
+        setTimeout(function () {
+            $('#table').DataTable().ajax.url(`/getAllCustomers?fnameSearch=` + data).load();
+        }, 700);
     });
     $('#Phone').on('keyup', function (re) {
         var data = $("#Phone").val();
-        $('#table').DataTable().ajax.url(`/getAllCustomers?phone=` + data).load();
+        setTimeout(function () {
+            $('#table').DataTable().ajax.url(`/getAllCustomers?phone=` + data).load();
+        }, 1000);
     });
     $('#CreatedOn').on('keyup', function (data) {
         var data = $("#Phone").val();
-        $('#table').DataTable().ajax.url(`/getAllCustomers?createdOn=` + data).load();
+        setTimeout(function () {
+            $('#table').DataTable().ajax.url(`/getAllCustomers?createdOn=` + data).load();
+        }, 700);
     });
     $('#0').on('change', function () {
         let value = $(this).is(":checked");
@@ -43,11 +52,6 @@
         let value = $(this).is(":checked");
         $('#table').DataTable().column(4).visible();
     });
-    $('#table').DataTable().rowReorder.enable();
-    //$('#5').on('change', function () {
-    //    let value = $(this).is(':checked');
-    //    $('#table').DataTable().column(5).visible(value);
-    //});
 });
 
 function get() {
@@ -74,81 +78,9 @@ function get() {
     <i class="fa fa-trash" aria-hidden="true">
     </i></a><a href="#" onclick="edit(\``+ '' + data.Id + `\`);" class=" m-2 btn btn-primary">
     <i class="fa fa-pencil" aria-hidden="true"clas="fa fa-pencil" ></i></a>`;
-                    //"<a href='#' onclick='edit(" + data.Id + ")' class='btn btn-primary'>  <i class='fa fa-pencil' aria-hidden='true' class='fa fa-pencil' ></i>Edit</a> | <a href='#' onclick='deleteFunc(" + data.Id.toString() + ")' class='btn btn-danger'> Delete</a>";
                 }
             }]
     });
-
-    //var table = $("#table").dataTable({
-    //    "processing": true,
-    //    "serverSide": true,
-    //    //"filter":true,
-    //    "searching": { "regex": true },
-    //    "ajax": {
-    //        url: "/getAllCustomers",
-    //        type: "GET",
-    //        "dataSrc": ""
-    //    },
-    //    "columns": [
-    //        { "data": "name" },
-    //        { "data": "fname" },
-    //        { "data": "phone" },
-    //        { "data": "createdOn" },
-    //        {
-    //            "data": function (elem) {
-    //                return `<a href="#" class="btn btn-danger delete_btn" onclick="deleteFunc(\`` + '' + elem.id + `\`);" >
-    //<i class="fa fa-trash" aria-hidden="true">
-    //</i></a><a href="#" onclick="edit(\``+ '' + elem.id + `\`);" class=" m-2 btn btn-primary">
-    //<i class="fa fa-pencil" aria-hidden="true"clas="fa fa-pencil" ></i></a>`;
-    //                //"<a href='#' onclick='edit(" + data.id + ")' class='btn btn-primary'>  <i class='fa fa-pencil' aria-hidden='true' class='fa fa-pencil' ></i>Edit</a> | <a href='#' onclick='deleteFunc(" + data.id + ")' class='btn btn-danger'> Delete</a>";
-    //            }
-    //        }
-    //    ],
-    //});
-
-    //setInterval(function () {
-    //    table.ajax.reload();
-    //}, 3000);
-    //    $.ajax({
-    //        type: "GET",
-    //        url: "/getAllCustomers",
-    //        //data: JSON.stringify(model),
-    //        dataType: "json",
-    //        contentType: 'application/json; charset=utf-8',
-    //        success: function (data) {
-    //            $("#con").html(` <table class="table table-default table-striped table-hover w-100" id="table">
-    //            <tobdy>
-    //                <tr>
-    //                    <th>Name</th>
-    //                    <th>Fname</th>
-    //                    <th>Phone</th>
-    //                    <th>CreatedOn</th>
-    //                    <th class="">Action</th>
-    //                </tr>
-    //            </tobdy>
-
-    //        </table> `);
-    //            var table = $("#table tbody");
-    //            $.each(data, function (idx, elem) {
-    //                table.append(`<tr>
-    //<td id="${idx}" class="d-none">` + elem.id + `</td>
-    //<td>` + elem.name +
-    //                    `</td><td>` + elem.fname +
-    //                    `</td>  
-    //              <td>` + elem.phone + `</td>
-    //              <td>` + elem.createdOn + `</td>
-    //              <td> <a href="#" class="btn btn-danger delete_btn" onclick="deleteFunc(\``+ '' + elem.id + `\`);" >
-    //<i class="fa fa-trash" aria-hidden="true">
-    //</i></a><a href="#" onclick="edit(\``+ '' + elem.id + `\`);" class=" m-2 btn btn-primary">
-    //<i class="fa fa-pencil" aria-hidden="true"clas="fa fa-pencil" ></i></a>
-    //</td>
-    //</tr>`);
-    //            });
-    //        },
-    //        error: function () {
-    //            alert("Error occured!!");
-    //        }
-    //    });
 
 }
 
@@ -157,15 +89,13 @@ function edit(id) {
     id != null ? _url = "/addCustomer?id=" + id : _url = "/addCustomer";
     $.ajax({
         type: "GET",
-        //async: true,
-        //dataType: "json",
+
         url: _url,
-        //contentType: "application/json; charset=utf-8",
+
         success: function (res) {
             var modal = $("#exampleModal");
             modal.html(res);
             $('#exampleModal').modal('show');
-            //$('#table').DataTable().ajax.reload();
         },
         error: function (err) {
             alert("erro!");
@@ -191,12 +121,10 @@ function submitForm(isEdit) {
             type: "POST",
             url: "/updateCustomer",
             contentType: "application/json; charset=utf-8",
-            //contentType: "json",
             data: JSON.stringify(model),
             success: function (data) {
                 $('#table').DataTable().ajax.reload();
-                //alert(data);
-                //get();
+
                 $('#exampleModal').modal('hide');
 
             }
@@ -217,22 +145,16 @@ function submitForm(isEdit) {
             data: JSON.stringify(createmodel),
             success: function (data) {
                 $("#exampleModal").modal('show');
-                //$("#table").dataTable().ajax.reload();
-                //get();
+
                 $('#table').DataTable().ajax.reload();
                 $('#exampleModal').modal('hide');
-                //$('#exampleModal').modal('close');
+
 
             }
         });
     }
 }
 
-//function showHide(e, id) {
-
-//$('#table').DataTable().column(id).visible($('' + id + '').val());
-//}
-//}
 
 function deleteFunc(id) {
     let is = confirm("are you sure?");
@@ -248,7 +170,6 @@ function deleteFunc(id) {
                 alert("customer succesfully deleted");
                 $('#table').DataTable().ajax.reload();
 
-                ////get();
             }, error: function () {
                 console.log("some thing went wrong");
             }
